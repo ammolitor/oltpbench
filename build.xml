@@ -2,13 +2,14 @@
 <project basedir="." default="build" name="benchmark">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="javac.target" value="1.6"/>
-    <property name="javac.source" value="1.6"/>
+    <property name="javac.target" value="1.7"/>
+    <property name="javac.source" value="1.7"/>
 
     <!-- *************************************** CONFIGURATION *************************************** -->
     
-    <property name="src.dir"                    location="src" />
-    <property name="tests.dir"                  location="tests" />
+    <property name="src.dir"                    location="src/main/java" />
+    <property name="tests.dir"                  location="src/test/java" />
+    <property name="resources.dir"              location="src/main/resources" />
     <property name="lib.dir"                    location="lib" />
     <property name="build.dir"                  location="build" />
     <property name="build.tests.dir"            location="${build.dir}/tests" />
@@ -53,7 +54,7 @@
         <!-- <echo message="${ant.project.name}: ${ant.file}"/> -->
         
         <mkdir dir="${build.dir}/META-INF"/>
-        <copy file="${src.dir}/META-INF/persistence.xml" todir="${build.dir}/META-INF"/>
+        <copy file="${resources.dir}/META-INF/persistence.xml" todir="${build.dir}/META-INF"/>
         <javac debug="true" debuglevel="${debuglevel}" includeantruntime="false"
                destdir="${build.dir}"
                source="${javac.source}"

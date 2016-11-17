@@ -14,29 +14,23 @@
  *  limitations under the License.                                            *
  ******************************************************************************/
 
+package com.oltpbenchmark.benchmarks.seats;
 
-package com.oltpbenchmark.benchmarks.wikipedia;
+import com.oltpbenchmark.api.AbstractTestWorker;
 
-import com.oltpbenchmark.api.AbstractTestBenchmarkModule;
-import com.oltpbenchmark.benchmarks.wikipedia.procedures.*;
-
-public class TestWikipediaBenchmark extends AbstractTestBenchmarkModule<WikipediaBenchmark> {
-
+public class TestSEATSWorker extends AbstractTestWorker<SEATSBenchmark> {
+   
     static {
-//         org.apache.log4j.PropertyConfigurator.configure("/home/pavlo/Documents/OLTPBenchmark/oltpbench/log4j.properties");
+        String ud = System.getProperty("user.dir");
+        String path = ud + "/src/main/resources/log4j.properties";
+        org.apache.log4j.PropertyConfigurator.configure(path);
     }
     
-    public static final Class<?> PROC_CLASSES[] = {
-        AddWatchList.class,
-        GetPageAnonymous.class,
-        GetPageAuthenticated.class,
-        RemoveWatchList.class,
-        UpdatePage.class,
-    };
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp(SEATSBenchmark.class, TestSEATSBenchmark.PROC_CLASSES);
+        this.workConf.setScaleFactor(0.01);
+        SEATSProfile.clearCachedProfile();
+    }
     
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp(WikipediaBenchmark.class, PROC_CLASSES);
-	}
-
 }

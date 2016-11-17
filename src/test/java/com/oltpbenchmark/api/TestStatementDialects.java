@@ -29,7 +29,9 @@ import com.oltpbenchmark.util.FileUtil;
 public class TestStatementDialects extends AbstractTestCase<EpinionsBenchmark> {
     
     static {
-      org.apache.log4j.PropertyConfigurator.configure("/home/pavlo/Documents/OLTPBenchmark/OLTPBenchmark/log4j.properties");
+      String ud = System.getProperty("user.dir");
+      String path = ud + "/src/main/resources/log4j.properties";
+      org.apache.log4j.PropertyConfigurator.configure(path);
     }
     
     private File xmlFile;

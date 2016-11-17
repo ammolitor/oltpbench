@@ -15,28 +15,30 @@
  ******************************************************************************/
 
 
-package com.oltpbenchmark.benchmarks.jpab;
+package com.oltpbenchmark.benchmarks.wikipedia;
 
 import com.oltpbenchmark.api.AbstractTestBenchmarkModule;
-import com.oltpbenchmark.benchmarks.jpab.tests.BasicTest;
-import com.oltpbenchmark.benchmarks.jpab.tests.CollectionTest;
-import com.oltpbenchmark.benchmarks.jpab.tests.ExtTest;
-import com.oltpbenchmark.benchmarks.jpab.tests.IndexTest;
-import com.oltpbenchmark.benchmarks.jpab.tests.NodeTest;
+import com.oltpbenchmark.benchmarks.wikipedia.procedures.*;
 
-public class TestJPABBenchmark extends AbstractTestBenchmarkModule<JPABBenchmark> {
-	
+public class TestWikipediaBenchmark extends AbstractTestBenchmarkModule<WikipediaBenchmark> {
+
+    static {
+        String ud = System.getProperty("user.dir");
+        String path = ud + "/src/main/resources/log4j.properties";
+        org.apache.log4j.PropertyConfigurator.configure(path);
+    }
+    
     public static final Class<?> PROC_CLASSES[] = {
-        BasicTest.class,
-        CollectionTest.class,
-        ExtTest.class,
-        IndexTest.class,
-        NodeTest.class
+        AddWatchList.class,
+        GetPageAnonymous.class,
+        GetPageAuthenticated.class,
+        RemoveWatchList.class,
+        UpdatePage.class,
     };
     
 	@Override
 	protected void setUp() throws Exception {
-		super.setUp(JPABBenchmark.class, PROC_CLASSES);
+		super.setUp(WikipediaBenchmark.class, PROC_CLASSES);
 	}
 
 }
